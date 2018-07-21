@@ -17,7 +17,7 @@
       <td class="el-table_1_column_1 is-center" v-for="node in detailNode" :key="node">{{item[node]}}</td>
 
       <span v-if="showContext" class="vue-contextMenu-listWrapper" :class="'vue-contextMenuName-' + contextMenuData.menuName">
-          <li v-for="menu in contextMenuData.menuList" class="context-menu-list">
+          <li v-for="(menu,index) in contextMenuData.menuList" :key="index" class="context-menu-list">
             <button @click.stop="contextEventHandler(item,menu)">
               <i :class="menu.icoName" class="menu-button"></i>
               <span class="menu-button">{{menu.btnName}}</span>
