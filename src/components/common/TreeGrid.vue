@@ -118,10 +118,8 @@
           let menu = document.getElementsByClassName(menuName)[index];
           menu.style.display = 'block';
           menu.style.left = val.x + 'px';
-          menu.style.top = val.y+ 'px';
-          document.addEventListener('mouseup', function () {
-            menu.style.display = 'none'
-          }, false)
+          menu.style.top = val.y + 'px';
+          document.addEventListener('mouseup', () => menu.style.display = 'none', false)
         }
       }
     },
