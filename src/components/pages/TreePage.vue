@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TreeGrid :items="data" v-on:data-change="listenToMessage"></TreeGrid>
-    <el-button @click="add">添加</el-button>
+    <TreeGrid :tableData="data" :tableHeader="tableHeader" :contextMenuData="contextMenuData" :showContext="showContext"
+           @deleteData="deleteData" @newData="newData" v-on:data-change="listenToMessage"/>
   </div>
 </template>
 
@@ -17,12 +17,39 @@
     data() {
       return {
         total: 0,
-        data: null
+        data: [],
+        tableHeader:[],
+        showContext: true,
+        contextMenuData: {
+          menuName: 'demo',
+          location: {x: 0, y: 0},
+          // 菜单选项
+          menuList: [
+            {
+              fnHandler: 'newData',// 绑定事件
+              icoName: 'el-icon-circle-plus',// icon图标
+              btnName: '新增'// 菜单名称
+            }, {
+              fnHandler: 'deleteData',
+              icoName: 'el-icon-remove-outline',
+              btnName: '删除'
+            }
+          ]
+        },
       }
     },
     methods: {
       listenToMessage: function (data) {
         this.data = data;
+      },
+      deleteData(item){
+        console.info('treePage deleteData--'+JSON.stringify(item))
+      },
+      saveData(item) {
+        console.info('saveData' +JSON.stringify(item))
+      },
+      newData() {
+        console.info('newData!')
       },
       add() {
         var depart = {"id": 132, "parentId": 13, "text": "商品列表14", "name": "name4", "grade": 2, children: []};
@@ -71,6 +98,8 @@
         ]
       })
       self.data = list;
+
+      self.tableHeader.push({title:'上级',name:'text'},{title:'名称',name:'name'},{title:'上级Id',name:'parentId'})
     },
 
   }

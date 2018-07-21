@@ -1,16 +1,28 @@
 <template>
-  <el-table :data="tableData3" style="width: 100%" size="small">
-    <el-table-column align="center" prop="date" label="日期"/>
-    <el-table-column align="center" label="配送信息">
-      <el-table-column align="center" prop="name" label="姓名"/>
-      <el-table-column align="center" label="地址">
-        <el-table-column align="center" prop="province" label="省份"/>
-        <el-table-column align="center" prop="city" label="市区"/>
-        <el-table-column align="center" prop="address" label="地址" width="300"/>
-        <el-table-column align="center" prop="zip" label="邮编"/>
+  <div>
+<!--    <el-table :data="tableData3" style="width: 100%" size="small">
+      <el-table-column align="center" prop="date" label="日期"/>
+      <el-table-column align="center" label="配送信息">
+        <el-table-column align="center" prop="name" label="姓名"/>
+        <el-table-column align="center" label="地址">
+          <el-table-column align="center" prop="province" label="省份"/>
+          <el-table-column align="center" prop="city" label="市区"/>
+          <el-table-column align="center" prop="address" label="地址" width="300"/>
+          <el-table-column align="center" prop="zip" label="邮编"/>
+        </el-table-column>
       </el-table-column>
-    </el-table-column>
-  </el-table>
+    </el-table>-->
+
+
+    <el-table :data="tableData3" style="width: 100%" size="small">
+      <el-table-column align="center" prop="date" label="日期"/>
+      <el-table-column align="center" prop="name" label="姓名"/>
+      <el-table-column align="center" prop="province" label="省份"/>
+      <el-table-column align="center" prop="city" label="市区"/>
+      <el-table-column align="center" prop="address" label="地址" width="300"/>
+      <el-table-column align="center" prop="zip" label="邮编"/>
+    </el-table>
+  </div>
 </template>
 
 
