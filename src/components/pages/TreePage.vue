@@ -1,113 +1,140 @@
 <template>
-  <div>
-    <TreeGrid :tableData="data" :tableHeader="tableHeader" :contextMenuData="contextMenuData" :showContext="showContext"
-           @deleteData="deleteData" @newData="newData" v-on:data-change="listenToMessage"/>
-  </div>
+  <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource">
+    <el-table-column label="操作" v-if="treeType === 'normal'" width="260"  align="center">
+      <template slot-scope="scope">
+        <button type="button" class="el-button el-button--default el-button--small">
+          <router-link :to="{ path: requestUrl + 'edit', query: {id: scope.row.Oid} }" tag="span">
+            编辑
+          </router-link>
+        </button>
+        <el-button size="small" type="danger" @click="handleDelete()"> 删除 </el-button>
+        <el-button type="button" class="el-button el-button--success el-button--small" @click="add(scope.row)">
+          <router-link :to="{ path: requestUrl, query: {parentId: scope.row.parentOId} }" tag="span">
+            添加
+          </router-link>
+        </el-button>
+      </template>
+    </el-table-column>
+  </tree-grid>
 </template>
 
 <script>
-  import TreeGrid from '@/components/common/TreeGrid';
-
+  import  TreeGrid  from "@/components/common/TreeTable";
   export default {
-    name: 'treePage',
-    props: ['items'],
+    name: "hello",
     components: {
       TreeGrid
     },
     data() {
       return {
-        total: 0,
-        data: [],
-        tableHeader:[],
-        showContext: true,
-        contextMenuData: {
-          menuName: 'demo',
-          location: {x: 0, y: 0},
-          // 菜单选项
-          menuList: [
-            {
-              fnHandler: 'newData',// 绑定事件
-              icoName: 'el-icon-circle-plus',// icon图标
-              btnName: '新增'// 菜单名称
-            }, {
-              fnHandler: 'deleteData',
-              icoName: 'el-icon-remove-outline',
-              btnName: '删除'
-            }
-          ]
-        },
-      }
+        treeType: "normal",
+        requestUrl: "",
+        columns: [
+          {
+            text: "姓名",
+            align: "center",
+            dataIndex: "name"
+          },
+          {
+            text: "年龄",
+            align: "center",
+            dataIndex: "age"
+          },
+          {
+            text: "性别",
+            align: "center",
+            dataIndex: "sex"
+          }
+        ],
+        dataSource: [
+          {
+            id: 1,
+            parentId: 0,
+            name: "测试1",
+            age: 18,
+            sex: "男",
+            children: [
+              {
+                id: 2,
+                parentId: 1,
+                name: "测试2",
+                age: 22,
+                sex: "男"
+              }
+            ]
+          },
+          {
+            id: 3,
+            parentId: 0,
+            name: "测试3",
+            age: 23,
+            sex: "女",
+            children: [
+              {
+                id: 4,
+                parentId: 3,
+                name: "测试4",
+                age: 22,
+                sex: "男"
+              },
+              {
+                id: 5,
+                parentId: 3,
+                name: "测试5",
+                age: 25,
+                sex: "男"
+              },
+              {
+                id: 6,
+                parentId: 3,
+                name: "测试6",
+                age: 26,
+                sex: "女",
+                children: [
+                  {
+                    id: 7,
+                    parentId: 6,
+                    name: "测试7",
+                    age: 27,
+                    sex: "男"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: 18,
+            parentId: 0,
+            name: "测试8",
+            age: 18,
+            sex: "男"
+          }
+        ]
+      };
     },
     methods: {
-      listenToMessage: function (data) {
-        this.data = data;
+      add(row) {
+        console.log(row);
       },
-      deleteData(item){
-        console.info('treePage deleteData--'+JSON.stringify(item))
-      },
-      saveData(item) {
-        console.info('saveData' +JSON.stringify(item))
-      },
-      newData() {
-        console.info('newData!')
-      },
-      add() {
-        var depart = {"id": 132, "parentId": 13, "text": "商品列表14", "name": "name4", "grade": 2, children: []};
-        this.data[0].children[2].children.push(depart);
-      },
-      appendToNoChildren() {
-        var depart = {"id": 111, "parentId": 11, "text": "商品列表5", "name": "name5", "grade": 2, children: []};
-        this.data[0].children[0].children.push(depart);
-      },
-      minus() {
-        this.data[0].children.splice(1, 1);
+      handleDelete() {
+        this.$confirm("此操作将永久删除该记录, 是否继续?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "error"
+        })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "删除成功!"
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "已取消删除"
+            });
+          });
       }
-    },
-    mounted() {
-      var self = this;
-      var list = [
-        {
-          "id": 1, "text": "商品管理", "name": "name1", "grade": 0,
-          "children": [
-            {"id": 11, "parentId": 1, "text": "商品列表", "name": "name2", "grade": 1, children: []},
-            {"id": 12, "parentId": 1, "text": "添加新商品", "name": "name3", "grade": 1, children: []},
-            {
-              "id": 13, "parentId": 1, "text": "商品分类", "name": "name4", "grade": 1,
-              "children": [
-                {
-                  "id": 131, "parentId": 13, "text": "商品列表1", "name": "name11", "grade": 2,
-                  "children": [
-                    {"id": 1311, "parentId": 131, "text": "商品列表13", "name": "name1311", "grade": 3}
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": 2, "text": "2", "name": "name5", "grade": 0,
-          "children": [
-            {"id": 21, "parentId": 2, "text": "商品列表2", "name": "name5", "grade": 1, children: []}
-          ]
-        }
-      ]
-      list.push({
-        "id": 3, "text": "3", "name": "name3", "grade": 0,
-        "children": [
-          {"id": 31, "parentId": 3, "text": "商品列表3", "name": "name5", "grade": 1, children: []}
-        ]
-      })
-      self.data = list;
-
-      self.tableHeader.push({title:'上级',name:'text'},{title:'名称',name:'name'},{title:'上级Id',name:'parentId'})
-    },
-
-  }
+    }
+  };
 </script>
-
-<style>
-  .vue-contextmenu-listWrapper .context-menu-list button i, .vue-contextmenu-listWrapper .context-menu-list button span {
-    float: left;
-    margin-left: 10px !important;
-  }
-</style>

@@ -6,6 +6,7 @@ import NotFound from '@/components/common/404'
 import ProductList from '@/components/pages/ProductList'
 import TabList from '@/components/pages/TabList'
 import TreePage from '@/components/pages/TreePage'
+import TreeGrid from '@/components/pages/TreeGrid'
 
 Vue.use(Router)
 
@@ -38,6 +39,10 @@ export default new Router({
           path: 'treePage',
           component: TreePage,
           name: 'TreePage'
+        },{
+          path: 'treeGrid',
+          component: TreeGrid,
+          name: 'TreeGrid'
         },{
           path: 'tabs',
           component: TabList,
