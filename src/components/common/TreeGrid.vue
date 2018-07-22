@@ -2,9 +2,9 @@
   <table class="el-table el-table--fit el-table--border el-table--enable-row-transition ">
     <thead>
     <tr>
-      <td v-for="(header,index) in tableHeader" class="el-table_5_column_32 is-center is-leaf" :key="index">
+      <th v-for="(header,index) in tableHeader" class="el-table_5_column_32 is-center is-leaf" :key="index">
         {{header.title}}
-      </td>
+      </th>
     </tr>
     </thead>
     <tbody class="el-table__body-wrapper ">
@@ -16,14 +16,14 @@
       </td>
       <td class="el-table_1_column_1 is-center" v-for="node in detailNode" :key="node">{{item[node]}}</td>
 
-      <span v-if="showContext" class="vue-contextMenu-listWrapper" :class="'vue-contextMenuName-' + contextMenuData.menuName">
+     <!-- <span v-if="showContext" class="vue-contextMenu-listWrapper" :class="'vue-contextMenuName-' + contextMenuData.menuName">
           <li v-for="(menu,index) in contextMenuData.menuList" :key="index" class="context-menu-list">
             <button @click.stop="contextEventHandler(item,menu)">
               <i :class="menu.icoName" class="menu-button"></i>
               <span class="menu-button">{{menu.btnName}}</span>
             </button>
           </li>
-        </span>
+        </span>-->
 
     </tr>
     </tbody>
