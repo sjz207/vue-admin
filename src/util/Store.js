@@ -5,7 +5,6 @@ export default class Store {
   }
 
   static getItem(key) {
-
     return localStorage.getItem(key)
   }
 
@@ -18,11 +17,23 @@ export default class Store {
   }
 
   static getSessionItem(key) {
-
     return sessionStorage.getItem(key)
   }
 
   static deleteSessionItem(key) {
     sessionStorage.removeItem(key)
+  }
+
+  static clearSessionStorage() {
+    sessionStorage.clear()
+  }
+
+  static clearLocalStorage() {
+    localStorage.clear()
+  }
+
+  static clearStorage() {
+    this.clearSessionStorage()
+    this.clearLocalStorage()
   }
 }
