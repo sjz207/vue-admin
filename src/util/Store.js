@@ -1,4 +1,8 @@
+import * as $cookies from "vue-cookies";
+
 export default class Store {
+
+  static defaultExpireTimes = 30 * 60;
 
   static setItem(key, value) {
     localStorage.setItem(key, value)
@@ -35,5 +39,19 @@ export default class Store {
   static clearStorage() {
     this.clearSessionStorage()
     this.clearLocalStorage()
+  }
+
+  static setCookie(key, value, expireTimes) {
+
+    expireTimes = expireTimes ? expireTimes : this.defaultExpireTimes
+    $cookies.set(key, value, expireTimes)
+  }
+
+  static getCookies(key) {
+    return $cookies.get(key)
+  }
+
+  static deleteCookies(key) {
+    $cookies.remove(key)
   }
 }
