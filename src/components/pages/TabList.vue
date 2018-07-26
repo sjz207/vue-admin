@@ -30,7 +30,6 @@
       }
     },
     created() {
-      console.info(this.$storage.getItem('name'))
       this.activeName = this.$root.storage.getItem('name') ? this.$root.storage.getItem('name') : this.activeName
       this.$root.bus.$on('name', content => console.info(content))
     }
