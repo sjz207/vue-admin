@@ -41,9 +41,8 @@ export default class Store {
     this.clearLocalStorage()
   }
 
-  static setCookie(key, value, expireTimes) {
+  static setCookie(key, value, expireTimes = this.defaultExpireTimes) {
 
-    expireTimes = expireTimes ? expireTimes : this.defaultExpireTimes
     $cookies.set(key, value, expireTimes)
   }
 
