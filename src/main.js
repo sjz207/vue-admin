@@ -8,7 +8,9 @@ import '@/assets/css/common.css'
 import storage from '@/util/store'
 import http from '@/util/AxiosHttp'
 import ZkTable from 'vue-table-with-tree-grid'
+import cookies  from 'vue-cookies'
 
+Vue.use(cookies)
 Vue.use(ZkTable)
 Vue.use(ElementUI)
 Vue.prototype.$storage = storage
