@@ -8,11 +8,11 @@ import '@/assets/css/common.css'
 import storage from '@/util/store'
 import http from '@/util/AxiosHttp'
 import ZkTable from 'vue-table-with-tree-grid'
-import cookies  from 'vue-cookies'
+import cookies from 'vue-cookies'
 
 Vue.use(cookies)
 Vue.use(ZkTable)
-Vue.use(ElementUI)
+Vue.use(ElementUI, {size: 'small', zIndex: 3000});
 Vue.prototype.$storage = storage
 Vue.prototype.$http = http
 Vue.config.productionTip = false
