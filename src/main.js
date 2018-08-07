@@ -17,7 +17,7 @@ Vue.use(ZkTable);
 Vue.use(ElementUI, {size: 'small', zIndex: 3000});
 Vue.prototype.$storage = storage;
 Vue.prototype.$http = http;
-Vue.prototype.$axios=axios
+Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 const bus = Bus;
 
