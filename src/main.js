@@ -12,7 +12,6 @@ import http from '@/util/AxiosHttp'
 import axios from 'axios'
 
 
-axios.defaults.baseURL='/api'
 Vue.use(cookies);
 Vue.use(ZkTable);
 Vue.use(ElementUI, {size: 'small', zIndex: 3000});
