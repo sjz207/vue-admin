@@ -39,8 +39,8 @@
     mounted() {
 
       console.log(this.$http.getRequest('/product/dict/type/list'))
-      console.info(this.$axios.get('/product/dict/type/list'))
-      console.log(fetch('/api/product/dict/type/list'))
+      console.info('axios :',this.$axios.get('/product/dict/type/list'))
+      console.log('fetch:',fetch('/api/product/dict/type/list'))
 
     },
     created() {
