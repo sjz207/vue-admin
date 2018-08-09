@@ -44,6 +44,26 @@ export default class AxiosHttp {
     })
   }
 
+  /**
+   * el-upload 单文件文件上传
+   * @param url
+   * @param params 文件对象 filename 文件名称 file待上传的文件
+   * @returns {Promise}
+   */
+  static uploadRequest(url, params) {
+    return new Promise((resolve, reject) => {
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+      let formData = new FormData();
+      formData.append(params.filename, params.file);//通过append向form对象添加数据
+      axios.post(url, formData, config).then(response => resolve(response))
+        .catch(error => reject(error));
+    })
+  }
+
 
   static deleteRequest(url, params) {
     return new Promise((resolve, reject) => {

@@ -21,6 +21,15 @@ Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 const bus = Bus;
 
+router.beforeEach((to, from, next) => {
+  console.log('to:',to,'from : ', from);
+  console.info('请求拦截')
+  next()
+});
+
+/**
+ * 放在最底部 实现router的刷新拦截
+ */
 new Vue({
   el: '#app',
   router,
