@@ -3,6 +3,7 @@ import axios from 'axios'
 axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 6000;
 axios.defaults.headers['CLOUD_HEADER'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers['AUTH_HEADER'] = 'AUTH_HEADER_AXIOS_VALUE';
 
 /**
  * 请求拦截

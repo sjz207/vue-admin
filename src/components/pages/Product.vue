@@ -27,9 +27,10 @@
       <el-switch v-model="ruleForm.delivery"></el-switch>
     </el-form-item>
     <el-form-item label="自动上传" prop="type">
-      <el-upload
-        action="http://localhost:8080/upload"
-        list-type="picture-card"
+      <el-upload action="/api/upload"
+        :headers="tokenHeaders"
+        :with-credentials="true"
+        listType="picture-card"
         :name="'filename'"
         :on-preview="handlePictureCardPreview"
         :on-remove="handleRemove">
@@ -43,7 +44,7 @@
     <el-form-item label="自定义上传" prop="type">
       <el-upload
         action="/upload"
-        list-type="picture-card"
+        listType="picture-card"
         :http-request="uploadFile"
         :name="'uploadFile'"
         :on-preview="handlePictureCardPreview"
@@ -111,6 +112,7 @@
     data() {
       return {
         ruleForm: {},
+        tokenHeaders: {'AUTH_HEADER': 'AUTH_HEADER_VALUE'},
         categories: [{
           name: 'name',
           code: 'code'
@@ -222,7 +224,7 @@
         console.info(this.$refs.cates.length)
       },
       getCategory(childData) {
-        console.log('get child data',childData);
+        console.log('get child data', childData);
         this.ruleForm.desc = JSON.stringify(childData)
       }
     }
