@@ -33,27 +33,21 @@
     },
     methods: {
       addUser() {
-        this.user = {name: Date.now(), age: Math.floor(Math.random() * (20 + 1) + 10)};
-        // this.$store.dispatch({
-        //   type: 'addUser',
-        //   payLoad: this.user
-        // });
-        this.$store.dispatch({
-          type: 'addUserCommit',
-          payLoad: this.user
-        });
+        // this.$store.dispatch({type: 'addUser', payLoad: this.user});
+        this.$store.dispatch({type: 'addUserCommit', payLoad: this.user});
         console.info('addUserList:', this.$store.getters.addUserList);
         console.info('mapGetters addUserList:', this.addUserList)
+        this.resetData()
       },
       ...mapActions([
         // 将 `this.addUserCommit()` 映射为 `this.$store.addUserCommit({type: 'addUserCommit',payLoad: this.user})`
         'addUserCommit'
       ]),
       addAction({commit}, action) {
-        this.addUserCommit({
-          type: 'addUserCommit',
-          payLoad: this.user
-        }, action);
+        this.addUserCommit({type: 'addUserCommit', payLoad: this.user}, action);
+        this.resetData()
+      },
+      resetData() {
         this.user = {name: Date.now(), age: Math.floor(Math.random() * (20 + 1) + 10)};
       }
     },
