@@ -7,7 +7,8 @@ import '@/assets/css/common.css'
 import ZkTable from 'vue-table-with-tree-grid'
 import cookies from 'vue-cookies'
 import Bus from '@/util/Bus'
-import storage from '@/util/store'
+import storage from '@/util/Storage'
+import store from '@/util/vuex/store'
 import http from '@/util/AxiosHttp'
 import axios from 'axios'
 
@@ -23,7 +24,7 @@ const bus = Bus;
 
 router.beforeEach((to, from, next) => {
   console.log('to:',to,'from : ', from);
-  console.info('请求拦截')
+  console.info('请求拦截');
   next()
 });
 
@@ -34,6 +35,7 @@ new Vue({
   el: '#app',
   router,
   components: {App},
+  store,
   data: {
     bus,
     storage

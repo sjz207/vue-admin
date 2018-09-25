@@ -6,6 +6,7 @@
     <el-menu-item index="/home/tabs" route="/home/tabs">tab列表</el-menu-item>
     <el-menu-item index="/home/treePage" route="/home/treePage">treePage</el-menu-item>
     <el-menu-item index="/home/treeGrid" route="/home/treeGrid">treeGrid</el-menu-item>
+    <el-menu-item index="/home/vuex" route="/home/vuex">vuex</el-menu-item>
   </el-menu>
 </template>
 

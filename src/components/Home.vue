@@ -38,9 +38,9 @@
     },
     mounted() {
 
-      console.log(this.$http.getRequest('/product/list'))
-      console.info('axios :',this.$axios.get('/product/list'))
-      console.log('fetch:',fetch('/api/product/list'))
+      //console.log(this.$http.getRequest('/product/list'))
+     // console.info('axios :',this.$axios.get('/product/list'))
+      //console.log('fetch:',fetch('/api/product/list'))
 
     },
     created() {

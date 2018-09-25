@@ -7,8 +7,9 @@ import ProductList from '@/components/pages/ProductList'
 import TabList from '@/components/pages/TabList'
 import TreePage from '@/components/pages/TreePage'
 import TreeGrid from '@/components/pages/TreeGrid'
+import UserList from '@/components/vuex/UserList'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -51,6 +52,10 @@ export default new Router({
           path: 'product/list',
           component: ProductList,
           name: 'productList'
+        }, {
+          path: 'vuex',
+          component: UserList,
+          name: 'userList'
         }
       ]
     }
